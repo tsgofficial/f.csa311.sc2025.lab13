@@ -1,52 +1,57 @@
-# Lab 12 - Test Double (Fakes, Mocks, & Stubs)
+# Lab 13 - Хуулбар туршилт (Test Double) (Хуурамч (Fakes), Загвар (Stubs), болон Хуурмаг (Mocks))
 
 This recitation is an introduction to test doubles.
+Энэ дасгал нь давхар тесттэй танилцахад зориулагдсан болно.
 
-## Deliverables
-- [ ] Use a fake to test `logIn`
-- [ ] Use stubs to test `getRecommendation`
-- [ ] Use mocks to test `sendPromoEmail`
+## Хүлээлгэн өгөх зүйлс
 
-## Introduction
+- [ ] `logIn` үйлдлийн хуурамч тест
+- [ ] `getRecommendation` үйлдлийн загвар тест
+- [ ] `sendPromoEmail` үйлдлийн хуурмаг тест
 
-In testing, it may sometimes be necessary to use objects or procedures that look and behave like their release-intended counterparts but are actually simplified versions that reduce the complexity and facilitate testing. Objects or procedures meant for production can be too slow, unavailable, expensive, opaque, or non-deterministic. Instead, test doubles are often used. There are multiple types of test doubles, but the most well-known/popular are Fakes, Stubs, and Mocks.
+## Товч тайлбар
 
-### Fakes
+Туршилтын явцад заримдаа бодит хувилбартай адилхан харагдаж, ажилладаг боловч илүү хялбаршуулсан хувилбаруудыг ашиглах шаардлага гардаг бөгөөд энэ нь нарийн төвөгтэй байдлыг бууруулж, туршилтыг хөнгөвчилдөг. Бодит орчинд зориулсан обьектууд эсвэл процедурууд хэт удаан, боломжгүй, үнэтэй, тодорхой бус, эсвэл тогтворгүй байж болно. Иймээс туршилтын хуулбаруудыг (test doubles) ихэвчлэн ашигладаг. Туршилтын хуулбаруудын олон төрөл байдаг ч хамгийн алдартай нь Хуурамч (Fakes), Загвар (Stubs), болон Хуурмаг (Mocks) юм.
 
-Fakes are fully functional classes with a simplified implementation. Usually, they take some shortcuts and are a simplified version of the real object. We use fakes to avoid interacting directly with objects that are too costly to access during testing, like databases. So, instead of querying our actual database, we use a fully functional in-memory database to simulate the same operations.
+### Хуурамч тест
 
-<!-- ![Fakes](https://miro.medium.com/v2/resize:fit:1400/format:webp/0*snrzYwepyaPu3uC9.png) -->
+Хуурамч (Fakes) нь хялбаршуулсан хэрэгжилттэй, бүрэн ажиллагаатай классууд юм. Ихэвчлэн тэд зарим товчлолыг ашигладаг бөгөөд бодит обьектын хялбаршуулсан хувилбар байдаг. Бид хуурамчийг туршилтын явцад хэт өндөр өртөгтэй хандах обьектуудтай, жишээлбэл мэдээллийн сантай шууд харьцахаас зайлсхийхийн тулд ашигладаг. Тиймээс бид жинхэнэ мэдээллийн сан руу хандахын оронд ижил үйлдлүүдийг дуурайлган хийх бүрэн ажиллагаатай, санах ойд ажилладаг мэдээллийн санг ашигладаг.
 
-### Stubs
+![Хуурамч](https://miro.medium.com/v2/resize:fit:1400/format:webp/0*snrzYwepyaPu3uC9.png)
 
-A stub is an artificial class that returns pre-configured data. We use it to answer calls during tests. Stubs are used when we can't or don’t want to involve objects that would answer with real data or would have undesirable side effects. For example, instead of querying our real database, we may use a stub with predefined data to simulate only the functionality we need.
+### Загвар тест
 
-<!-- ![Stubs](https://miro.medium.com/v2/resize:fit:1400/format:webp/0*KdpZaEVy6GNnrUpB.png) -->
+Загвар (Stub) нь урьдчилан тохируулсан өгөгдөл буцаадаг хиймэл класс юм. Бид үүнийг туршилтын явцад дуудлагад хариу өгөхийн тулд ашигладаг. Загварыг бид жинхэнэ өгөгдлөөр хариулах обьектуудыг оруулах боломжгүй эсвэл хүсэхгүй, эсвэл хүсээгүй гаж нөлөө үзүүлж болзошгүй тохиолдолд ашигладаг. Жишээлбэл, жинхэнэ мэдээллийн сан руу хандахын оронд бид урьдчилан тодорхойлсон өгөгдөлтэй загварыг ашиглан зөвхөн шаардлагатай үйлдлийг дуурайлган хийдэг.
 
-### Mocks
+![Загвар](https://miro.medium.com/v2/resize:fit:1400/format:webp/0*KdpZaEVy6GNnrUpB.png)
 
-A mock is an instrumented variant of a real class with fine-grained control. We use mocks when we don’t want to invoke expensive production code or when there is no easy way to verify that an intended action was executed. For example, we don't want to send a new email every time we want to test an email system.
+### Хуурмаг тест
 
-<!-- ![Mocks](https://miro.medium.com/v2/resize:fit:1400/format:webp/0*k7mwTF60slyMxRlm.png) -->
+Хуурмаг (Mock) нь бодит классын нарийн хяналттай, багажлагдсан хувилбар юм. Бид хуурмагийг өндөр өртөгтэй үйлдвэрлэлийн кодыг дуудахыг хүсэхгүй, эсвэл тодорхой үйлдэл хийгдсэн эсэхийг шалгах энгийн арга байхгүй тохиолдолд ашигладаг. Жишээлбэл, бид имэйлийн системийг турших болгондоо шинэ имэйл илгээхийг хүсдэггүй.
 
-These three terms are usually used interchangeably in practice, but there are some subtle differences. You can find plenty of resources online that go into more detail on the differences if you're still unsure what they are (don't worry, even experienced software developers get it [wrong](https://martinfowler.com/articles/mocksArentStubs.html)).
+![Хуурмаг](https://miro.medium.com/v2/resize:fit:1400/format:webp/0*k7mwTF60slyMxRlm.png)
 
-## Instructions
+Эдгээр гурван нэр томъёог практикт ихэвчлэн хольж хэрэглэдэг боловч бага зэргийн ялгаа байдаг. Хэрвээ та эдгээрийн ялгааг бүрэн ойлгоогүй хэвээр байвал (санаа зовох хэрэггүй, туршлагатай хөгжүүлэгчид ч алдаж болно), онлайнаас илүү дэлгэрэнгүй мэдээлэл өгдөг олон эх сурвалж олддог (ж.нь. https://martinfowler.com/articles/mocksArentStubs.html).
 
-Clone the AndrewWS repository from https://github.com/CMU-17-214/s24-lab12. Run the following commands to get started:
+## Удирдамж
+
+AndrewWS-ийн репозиторийг https://github.com/gobi/f.csa311.sc2025.lab13 хаягаас хуул. Эхлэхийн тулд дараах тушаалуудыг ажиллуул:
+
 ```
 mvn install
 mvn test
 ```
-You might notice the tests are taking a very long time to run. Let's increase their performance using test doubles! Look through the provided files to see which methods you will need to test with which types of test doubles. You will find hints on how to proceed there.
 
-All of your tests should be written in `AndrewWebServicesTest.java`. You will also need to implement a fake database in `InMemoryDatabase.java`. For mocks, we will use the [Mockito](https://site.mockito.org/) framework.
+Туршилтууд удаан хугацаанд ажиллаж байгааг анзаарч болно. Туршилтын хуулбаруудыг ашиглан гүйцэтгэлийг сайжруулъя! Өгөгдсөн файлуудыг шалгаж, аль төрлийн туршилтын хуулбаруудыг аль аргуудыг туршихад ашиглахыг тодорхойл. Тэндээс цааш хэрхэн үргэлжлүүлэх талаар зөвлөмжүүд олдно.
+
+Бүх туршилтуудыг AndrewWebServicesTest.java дотор бичих ёстой. Мөн InMemoryDatabase.java дотор хуурамч мэдээллийн сан хэрэгжүүлэх шаардлагатай. Хуурмагийн хувьд бид [Mockito](https://site.mockito.org/) фреймвөркийг ашиглана.
 
 ## Mockito
 
-We will be using the mocking framework [Mockito](https://site.mockito.org/) in this lab. Here is a simple example to get you familiar with the important parts of Mockito.
+Энэ лабораторид бид [Mockito](https://site.mockito.org/) хуурмагийн фреймвөркийг ашиглана. Mockito-ийн чухал хэсгүүдийг танилцуулахын тулд энгийн жишээ авъя.
 
-We'll use the `Cartoons` class for this example. The `Cartoons` class represents a mapping from characters to the cartoons they belong to.
+Энд бид Cartoons классыг ашиглана. Cartoons класс нь хүүхэлдэйн киноны баатруудыг тэдний харьяалагддаг хүүхэлдэйн кинотой холбодог хамаарлыг илэрхийлдэг гэж үзье.
+
 ```
 public class Cartoons {
 	private Map<String, String> charactersToCartoons;
@@ -56,30 +61,34 @@ public class Cartoons {
 	}
 }
 ```
-We use the `mock` method to create a mock of `Cartoons`:
+
+`mock` методыг ашиглаж `Cartoons` классын хуурмагийг үүсгэнэ:
+
 ```
 Cartoons ourMock = mock(Cartoons.class);
 ```
 
-Now we can use the `when` and `thenReturn` methods to add behavior to our mocked class (aka stub a method call):
+Дараа нь `when` болон `thenReturn` методуудыг ашиглаж хуурмаг класс яаж ажиллахыг зааж өгнө. (өөрөөр методын дуудалтын загварыг үүсгэнэ гэж хэлдэг):
 
 ```
 when(ourMock.get("Snoopy")).thenReturn("Peanuts");
 ```
 
-So, we've specified that whenever we call `get("Snoopy")`, our mocked class should return "Peanuts".
+Ингэснээр бид `get("Snoopy")` гэж дуудах бүрт манай хуурмаг класс "Peanuts" гэж хариу буцааж ажиллах юм.
 
-Next, we execute a method call on our mock:
+Ингэснээр, хуурмаг классаас бид метод дуудалдыг ажиллуулж чадна:
+
 ```
 String snoopyCartoon = ourMock.get("Snoopy");
 ```
 
-Now we use the `verify` method to check that our method was called with the given arguments. The following lines confirm that we invoked the `get` method on the mock and that the method returned a value that matches the expectation we set before:
+Одоо харин `verify` методын тусламжтайгаар бидний метод өгөгдсөн аргументтайгаар дуудагдсан эсэхийг шалгаж болно. Дараах мөрүүд нь `get` методыг дуудсан эсэхийг магадлаж бидний өгсөн дагууд утга буцаасан эсэхийг шалгаж байна:
+
 ```
 verify(ourMock).get("Snoopy");
 assertEquals(snoopyCartoon, "Peanuts")
 ```
 
-So, now we've successfully mocked the `Cartoons` class and used a stub method call to write a test for the `get` method in `Cartoons`.
+Ингэснээр бид `Cartoons` классыг амжилттайгаар хуурмаг болгож `get` методын дуудалтыг нь загвар дуудалт болгон орлуулахыг үзлээ.
 
-This example covered everything you need to know for mocks in this lab. Feel free to checkout the [Mockito website](https://site.mockito.org/) for more information and documentation on the methods we used above, or look online for other examples using Mockito if the one above wasn't clear. Also, ask your TAs or ask on Piazza if you need any further help. Good luck!
+Энэ жишээ нь лабораторийн хуурмагийн талаар мэдэх шаардлагатай бүх зүйлийг хамарсан болно. Дээр ашигласан аргуудын талаар дэлгэрэнгүй мэдээлэл, баримт бичиг авахыг хүсвэл [Mockito website](https://site.mockito.org/)-ыг үзэж болно, эсвэл дээрх жишээ тодорхой бус байвал онлайнаас бусад Mockito-ийн жишээнүүдийг хайж болно. Мөн тусламж хэрэгтэй бол багшаасаа асуу. Амжилт хүсье!
