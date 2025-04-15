@@ -34,7 +34,7 @@
 
 ## Удирдамж
 
-AndrewWS-ийн репозиторийг https://github.com/gobi/f.csa311.sc2025.lab13 хаягаас хуул. Эхлэхийн тулд дараах тушаалуудыг ажиллуул:
+AndrewWS-ийн репозиторийг https://github.com/gobi/f.csa311.sc2025.lab13 хаягаас fork хийж clone-дож ав. Эхлэхийн тулд дараах тушаалуудыг ажиллуул:
 
 ```
 mvn install
