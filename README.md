@@ -1,6 +1,5 @@
 # Lab 13 - Хуулбар туршилт (Test Double) (Хуурамч (Fakes), Загвар (Stubs), болон Хуурмаг (Mocks))
 
-This recitation is an introduction to test doubles.
 Энэ дасгал нь давхар тесттэй танилцахад зориулагдсан болно.
 
 ## Хүлээлгэн өгөх зүйлс
