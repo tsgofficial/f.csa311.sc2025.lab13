@@ -19,7 +19,8 @@ public class AndrewWebServices {
     /*
      * Accesses the database to verify the passed account name and password.
      * 
-     * Note that the database has a large latency which we don't want to interact with during testing.
+     * Note that the database has a large latency which we don't want to interact
+     * with during testing.
      * 
      * TODO: use a fake to test this method
      */
